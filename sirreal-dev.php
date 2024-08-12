@@ -12,15 +12,5 @@
  * @package HtmlApiDebugger
  */
 
-namespace sirreal;
 
-function jdbg( ...$data ) {
-	ob_start();
-	echo "======\n";
-	foreach ( $data as $d ) {
-		print_r( $d );
-		echo "\n";
-	}
-	echo "======\n";
-	file_put_contents( WP_CONTENT_DIR . '/log.txt', ob_get_clean(), FILE_APPEND );
-}
+require_once __DIR__ . '/_require_.php';
