@@ -8,9 +8,13 @@ namespace sirreal;
 
 function dt( ...$data ): void {
 	d( ...$data );
-	$trace = debug_backtrace( 0, 2 );
-	array_shift( $trace );
+	$trace = debug_backtrace( 0, 6 );
+	// array_shift( $trace );
+	$i = 0;
 	foreach ( $trace as $t ) {
+
+		// State::print( var_export( $t, true ) );
+
 		$file     = defined( 'ABSPATH' ) ? substr( $t['file'], strlen( \ABSPATH ) ) : $t['file'];
 		$line     = $t['line'];
 		$function = $t['function'];
@@ -68,7 +72,7 @@ function gate( bool $gate ): void {
 function dx( ...$args ): void {}
 
 if ( function_exists( 'add_action' ) ) {
-	\add_action( 'init', array( State::class, 'init' ) );
+	\add_action( 'plugins_loaded', array( State::class, 'init' ) );
 	\add_action( 'shutdown', array( State::class, 'shutdown' ) );
 }
 
